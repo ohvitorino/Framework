@@ -34,7 +34,9 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function getTemplatingMock()
     {
-        $templating = $this->getMock('\Symfony\Bundle\FrameworkBundle\Templating\EngineInterface');
+        $templating = $this
+            ->getMockBuilder('\Symfony\Bundle\FrameworkBundle\Templating\EngineInterface')
+            ->getMock();
         $templating
             ->method('render')
             ->willReturn('<html><head></head><body><p>And I, le content</p></body></html>');
@@ -91,12 +93,9 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
         $expectedResult = <<<EOF
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-  <head></head>
-  <body>
-    <p>And I, le content</p>
-  </body>
+<head></head>
+<body><p>And I, le content</p></body>
 </html>
-
 EOF;
 
         $message = $this->messageFactory->createHtmlMessage(

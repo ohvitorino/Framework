@@ -27,9 +27,9 @@ class DefaultMenuListenerTest extends \PHPUnit_Framework_TestCase
      */
     protected function getSecurityAuthorizationChecker()
     {
-        $container = $this->getMock(
-            '\Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface'
-        );
+        $container = $this
+            ->getMockBuilder('\Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface')
+            ->getMock();
 
         return $container;
     }
@@ -39,13 +39,13 @@ class DefaultMenuListenerTest extends \PHPUnit_Framework_TestCase
      */
     protected function getSecurityTokenStorage()
     {
-        $securityContext = $this->getMock(
+        $securityContext = $this->getMockBuilder(
             'Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface',
             array(),
             array(),
             '',
             false
-        );
+        )->getMock();
 
         return $securityContext;
     }
